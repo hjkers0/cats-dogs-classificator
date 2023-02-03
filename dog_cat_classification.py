@@ -10,10 +10,6 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 
-# %matplotlib inline 
-# %config InlineBackend.figure_format = 'retina' #High quality figures
-
-
 def normalized_rgb(x):
     print(x._count)
     return (x - 128) / 128
@@ -88,27 +84,27 @@ history = model.fit(
 
 ### Mostrar rendimiento tras las epocas
 
-# acc = history.history['accuracy']
-# val_acc = history.history['val_accuracy']
+acc = history.history['accuracy']
+val_acc = history.history['val_accuracy']
 
-# loss = history.history['loss']
-# val_loss = history.history['val_loss']
+loss = history.history['loss']
+val_loss = history.history['val_loss']
 
-# epochs_range = range(epochs)
+epochs_range = range(epochs)
 
-# plt.figure(figsize=(8, 8))
-# plt.subplot(1, 2, 1)
-# plt.plot(epochs_range, acc, label='Training Accuracy')
-# plt.plot(epochs_range, val_acc, label='Validation Accuracy')
-# plt.legend(loc='lower right')
-# plt.title('Training and Validation Accuracy')
+plt.figure(figsize=(8, 8))
+plt.subplot(1, 2, 1)
+plt.plot(epochs_range, acc, label='Training Accuracy')
+plt.plot(epochs_range, val_acc, label='Validation Accuracy')
+plt.legend(loc='lower right')
+plt.title('Training and Validation Accuracy')
 
-# plt.subplot(1, 2, 2)
-# plt.plot(epochs_range, loss, label='Training Loss')
-# plt.plot(epochs_range, val_loss, label='Validation Loss')
-# plt.legend(loc='upper right')
-# plt.title('Training and Validation Loss')
-# plt.show()
+plt.subplot(1, 2, 2)
+plt.plot(epochs_range, loss, label='Training Loss')
+plt.plot(epochs_range, val_loss, label='Validation Loss')
+plt.legend(loc='upper right')
+plt.title('Training and Validation Loss')
+plt.show()
 
 
 ### Imagenes a predecir y las pasamos a formato correcto
@@ -132,7 +128,7 @@ score = tf.nn.softmax(prediccion[0])
 print(score)
 
 print(
-    "\n This image most likely belongs to {} with a {:.2f} percent confidence."
+    "\n Esta imagen es un {} con un {:.2f} porciento de confianza."
     .format(class_names[np.argmax(score)], 100 * np.max(score))
 )
 
